@@ -32,7 +32,7 @@ jobs:
           
           sudo apt install cmake git asciidoc gcc make \
           flex bison python3 ca-certificates gnupg \
-          libboost-all-dev libreadline-dev libsdl1.2-dev
+          libboost-all-dev libreadline-dev libsdl2-dev libsdl1.2-dev
           
           sudo gpg --homedir /tmp \
                    --no-default-keyring \
@@ -112,4 +112,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: KnightOS-SDK
-          path: build
+          path: KnightosSDK
