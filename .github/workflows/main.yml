@@ -57,6 +57,7 @@ jobs:
         run: |
           cd genkfs
           make && make install
+          make install_man
       
       - name: mktiupgrade
         run: |
@@ -83,6 +84,8 @@ jobs:
         run: |
           cd scas
           make && make install
+          make install_lib_static
+          make install_man
       
       - name: kcc
         run: |
