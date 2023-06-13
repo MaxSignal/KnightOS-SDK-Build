@@ -25,3 +25,9 @@
 [submodule "sdk"]
 	path = sdk
 	url = https://github.com/KnightOS/sdk.git
+[submodule "mkrom"]
+	path = mkrom
+	url = https://github.com/MaxSignal/mkrom.git
+[submodule "patchrom"]
+	path = patchrom
+	url = https://github.com/MaxSignal/patchrom.git
