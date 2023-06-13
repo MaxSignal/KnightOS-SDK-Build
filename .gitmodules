@@ -31,3 +31,6 @@
 [submodule "patchrom"]
 	path = patchrom
 	url = https://github.com/MaxSignal/patchrom.git
+[submodule "libc"]
+	path = libc
+	url = https://github.com/KnightOS/libc.git
