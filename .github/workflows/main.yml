@@ -74,6 +74,7 @@ jobs:
         run: |
           cd kimg
           make && make install
+          make install_man
       
       - name: sass
         run: |
