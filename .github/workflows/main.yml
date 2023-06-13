@@ -90,13 +90,13 @@ jobs:
           cmake -DCMAKE_INSTALL_PREFIX=../KnightosSDK . 
           make && make install
       
-      - name: z80e
-        run: |
-          cd z80e
-          cmake -Denable-sdl=YES -DCMAKE_INSTALL_PREFIX=../KnightosSDK \
-                                 -DSCAS_LIBRARIES=../Knightos/lib \
-                                 -DSCAS_INCLUDES=../Knightos/include . 
-          make && make install
+#       - name: z80e
+#         run: |
+#           cd z80e
+#           cmake -Denable-sdl=YES -DCMAKE_INSTALL_PREFIX=../KnightosSDK \
+#                                  -DSCAS_LIBRARIES=../Knightos/lib \
+#                                  -DSCAS_INCLUDES=../Knightos/include . 
+#           make && make install
         
       - name: sdk
         run: |
