@@ -92,6 +92,16 @@ jobs:
           cd kcc
           cmake -DCMAKE_INSTALL_PREFIX=../KnightosSDK . 
           make && make install
+          
+      - name: mkrom
+        run: |
+          cd mkrom
+          make && make install && make install_man
+          
+      - name: patchrom
+        run: |
+          cd patchrom
+          make && make install && make install_man
       
 #       - name: z80e
 #         run: |
