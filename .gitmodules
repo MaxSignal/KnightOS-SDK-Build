@@ -1,0 +1,27 @@
+[submodule "mktiupgrade"]
+	path = mktiupgrade
+	url = https://github.com/MaxSignal/mktiupgrade.git
+[submodule "genkfs"]
+	path = genkfs
+	url = https://github.com/MaxSignal/genkfs.git
+[submodule "kimg"]
+	path = kimg
+	url = https://github.com/MaxSignal/kimg.git
+[submodule "sass"]
+	path = sass
+	url = https://github.com/MaxSignal/sass.git
+[submodule "scas"]
+	path = scas
+	url = https://github.com/MaxSignal/scas.git
+[submodule "kpack"]
+	path = kpack
+	url = https://github.com/KnightOS/kpack.git
+[submodule "z80e"]
+	path = z80e
+	url = https://github.com/KnightOS/z80e.git
+[submodule "kcc"]
+	path = kcc
+	url = https://github.com/KnightOS/kcc.git
+[submodule "sdk"]
+	path = sdk
+	url = https://github.com/KnightOS/sdk.git
