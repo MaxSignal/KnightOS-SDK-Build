@@ -70,10 +70,10 @@ jobs:
           cmake -DCMAKE_INSTALL_PREFIX=../KnightosSDK . 
           make && make install
         
-#       - name: kimg
-#         run: |
-#           cd kimg
-#           make && make install
+      - name: kimg
+        run: |
+          cd kimg
+          make && make install
       
       - name: sass
         run: |
