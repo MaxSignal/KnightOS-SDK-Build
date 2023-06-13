@@ -50,7 +50,7 @@ jobs:
       - name: Move directory and Init submodules 
         run: |
           mkdir knightosSDK
-          git submodule update --remote --recursive
+          git submodule update --init --recursive
           
       # Build project
       - name: genkfs
