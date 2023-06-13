@@ -1,0 +1,115 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "master" branch
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build-linux:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+  
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      
+      - name: Install dependencies
+        run: |
+          sudo apt update && sudo apt upgrade
+          
+          sudo apt install cmake git asciidoc gcc make \
+          flex bison python ca-certificates gnupg \
+          libboost-all-dev libreadline-dev libsdl1.2-dev
+          
+          sudo gpg --homedir /tmp \
+                   --no-default-keyring \
+                   --keyring /usr/share/keyrings/mono-official-archive-keyring.gpg \
+                   --keyserver hkp://keyserver.ubuntu.com:80 \
+                   --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+                   
+          echo "deb [signed-by=/usr/share/keyrings/mono-official-archive-keyring.gpg] \
+              https://download.mono-project.com/repo/ubuntu stable-focal main" | \
+              sudo tee /etc/apt/sources.list.d/mono-official-stable.list
+              
+          sudo apt install mono-complete 
+          
+          
+      - name: Move directory and Init submodules 
+        run: |
+          mkdir knightosSDK
+          git submodule update --remote --recursive
+          
+      # Build project
+      - name: genkfs
+        run: |
+          cd genkfs
+          make && make install
+      
+      - name: mktiupgrade
+        run: |
+          cd mktiupgrade
+          make && make install
+        
+      - name: kpack
+        run: |
+          cd kpack
+          cmake -DCMAKE_INSTALL_PREFIX=../KnightosSDK . 
+          make && make install
+        
+      - name: kimg
+        run: |
+          cd kimg
+          make && make install
+      
+      - name: sass
+        run: |
+          cd sass
+          make && make install
+      
+      - name: scas
+        run: |
+          cd scas
+          make && make install
+      
+      - name: kcc
+        run: |
+          cd kcc
+          cmake -DCMAKE_INSTALL_PREFIX=../KnightosSDK . 
+          make && make install
+      
+      - name: z80e
+        run: |
+          cd z80e
+          cmake -Denable-sdl=YES -DCMAKE_INSTALL_PREFIX=../KnightosSDK . 
+          make && make install
+        
+      - name: sdk
+        run: |
+          sudo pip3 install docopt
+          sudo pip3 install requests
+          sudo pip3 install pystache
+          sudo pip3 install pyyaml
+          cd sdk
+          
+          ./setup.py install --prefix=../KnightosSDK
+    
+#       - name: Init upload artifact
+#         run: |
+#           mkdir upload && mv ../bin/v810-gcc upload
+      - uses: actions/upload-artifact@v3
+        with:
+          name: KnightOS-SDK
+          path: build
